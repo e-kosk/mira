@@ -1,0 +1,85 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mira</title>
+    <script src="{% static 'mira_app/js/jQuery.js' %}"></script>
+    <script src="{% static 'mira_app/js/weatherTranslates.js' %}"></script>
+    <script src="{% static 'mira_app/js/mira.js' %}"></script>
+    <script src="{% static 'mira_app/js/caleandar.js' %}"></script>
+    <script src="{% static 'mira_app/js/Chart.min.js' %}"></script>
+    <script src="{% static 'mira_app/js/Chart.bundle.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'mira_app/css/mira.css' %}">
+    <link rel="stylesheet" href="{% static 'mira_app/css/weather-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'mira_app/css/theme1.css' %}">
+    <link rel="stylesheet" href="{% static 'mira_app/css/Chart.min.css' %}">
+    {% block extrastyle %}{% endblock %}
+</head>
+<body>
+
+<div id="datetime-container">
+    <div id="time">
+        <span class="text-small light"></span><span class="text-small light grey"></span>
+    </div>
+    <div id="date">
+        <div id="date-day">
+            <span class="text-small-half light">tuesday</span>
+        </div>
+        <div id="date-year">
+            <span class="text-small-half light">08.03.2020</span>
+        </div>
+    </div>
+</div>
+
+<div class="vertical-spacer"></div>
+
+<div class="title-container">
+    <span class="title upper">weather</span>
+    <hr class="title-hr">
+</div>
+
+<div id="weather-container">
+    <div id="weather-main">
+        <span id="weather-icon"></span><span><span id="weather-value" class="text-medium"></span><span class="text-tiny bold grey"></span><span class="text-medium">&deg</span></span>
+    </div>
+    <div id="weather-forecast">
+        <canvas id="myChart" width="325" height="150"></canvas>
+    </div>
+</div>
+
+<div class="vertical-spacer"></div>
+
+<div class="title-container">
+    <span class="title upper">calendar</span>
+    <hr class="title-hr">
+</div>
+
+<div id="calendar-container">
+    <div id="calendar-m"></div>
+    <div id="events"><ul></ul></div>
+</div>
+
+<div class="vertical-spacer"></div>
+
+<div class="title-container">
+    <span class="title upper">shopping list</span>
+    <hr class="title-hr">
+</div>
+
+<div id="cart-container">
+    <ol id="cart" class="text-small-half upper light"></ol>
+</div>
+
+<div class="vertical-spacer"></div>
+
+<div class="title-container">
+    <span class="title upper">public transport</span>
+    <hr class="title-hr">
+</div>
+
+<div id="public-transport-container"></div>
+
+</body>
+</html>

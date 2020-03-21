@@ -1,0 +1,176 @@
+{
+    "182": {
+        "14:02": {
+            "tripId": "8095261304190874123",
+            "direction": "Os.Na Stoku"
+        },
+        "14:12": {
+            "tripId": "8095261304187105806",
+            "direction": "Dworzec G\u0142\u00f3wny Wsch\u00f3d"
+        },
+        "14:32": {
+            "tripId": "8095261304187101712",
+            "direction": "Os.Na Stoku"
+        },
+        "14:42": {
+            "tripId": "8095261304190874124",
+            "direction": "Dworzec G\u0142\u00f3wny Wsch\u00f3d"
+        },
+        "15:02": {
+            "tripId": "8095261304187105807",
+            "direction": "Os.Na Stoku"
+        },
+        "15:12": {
+            "tripId": "8095261304187101713",
+            "direction": "Dworzec G\u0142\u00f3wny Wsch\u00f3d"
+        },
+        "15:32": {
+            "tripId": "8095261304190874125",
+            "direction": "Os.Na Stoku"
+        },
+        "15:42": {
+            "tripId": "8095261304187105808",
+            "direction": "Dworzec G\u0142\u00f3wny Wsch\u00f3d"
+        },
+        "16:02": {
+            "tripId": "8095261304187101714",
+            "direction": "Os.Na Stoku"
+        },
+        "16:12": {
+            "tripId": "8095261304190874126",
+            "direction": "Dworzec G\u0142\u00f3wny Wsch\u00f3d"
+        },
+        "16:32": {
+            "tripId": "8095261304187105809",
+            "direction": "Os.Na Stoku"
+        },
+        "16:42": {
+            "tripId": "8095261304187101715",
+            "direction": "Dworzec G\u0142\u00f3wny Wsch\u00f3d"
+        },
+        "17:02": {
+            "tripId": "8095261304190874127",
+            "direction": "Os.Na Stoku"
+        }
+    },
+    "139": {
+        "14:07": {
+            "tripId": "8095261304187036167",
+            "direction": "Mydlniki"
+        },
+        "14:12": {
+            "tripId": "8095261304193212935",
+            "direction": "Kombinat"
+        },
+        "14:27": {
+            "tripId": "8095261304188318218",
+            "direction": "Mydlniki"
+        },
+        "14:32": {
+            "tripId": "8095261304195633673",
+            "direction": "Kombinat"
+        },
+        "14:47": {
+            "tripId": "8095261304195629578",
+            "direction": "Mydlniki"
+        },
+        "14:52": {
+            "tripId": "8095261304195637769",
+            "direction": "Kombinat"
+        },
+        "15:07": {
+            "tripId": "8095261304193212936",
+            "direction": "Mydlniki"
+        },
+        "15:12": {
+            "tripId": "8095261304188314119",
+            "direction": "Kombinat"
+        },
+        "15:27": {
+            "tripId": "8095261304195633674",
+            "direction": "Mydlniki"
+        },
+        "15:32": {
+            "tripId": "8095261304187032075",
+            "direction": "Kombinat"
+        },
+        "15:47": {
+            "tripId": "8095261304195637770",
+            "direction": "Mydlniki"
+        },
+        "15:52": {
+            "tripId": "8095261304187036168",
+            "direction": "Kombinat"
+        },
+        "16:07": {
+            "tripId": "8095261304188314120",
+            "direction": "Mydlniki"
+        },
+        "16:12": {
+            "tripId": "8095261304188318219",
+            "direction": "Kombinat"
+        },
+        "16:27": {
+            "tripId": "8095261304187032076",
+            "direction": "Mydlniki"
+        },
+        "16:32": {
+            "tripId": "8095261304195629579",
+            "direction": "Kombinat"
+        },
+        "16:47": {
+            "tripId": "8095261304187036169",
+            "direction": "Mydlniki"
+        },
+        "16:52": {
+            "tripId": "8095261304193212937",
+            "direction": "Kombinat"
+        },
+        "17:07": {
+            "tripId": "8095261304188318220",
+            "direction": "Mydlniki"
+        }
+    },
+    "159": {
+        "14:02": {
+            "tripId": "8095261304191984140",
+            "direction": "Os.Piast\u00f3w"
+        },
+        "14:22": {
+            "tripId": "8095261304188281353",
+            "direction": "Os.Piast\u00f3w"
+        },
+        "14:42": {
+            "tripId": "8095261304194486797",
+            "direction": "Os.Piast\u00f3w"
+        },
+        "15:02": {
+            "tripId": "8095261304194490891",
+            "direction": "Os.Piast\u00f3w"
+        },
+        "15:22": {
+            "tripId": "8095261304194494989",
+            "direction": "Os.Piast\u00f3w"
+        },
+        "15:42": {
+            "tripId": "8095261304194494990",
+            "direction": "Cichy K\u0105cik"
+        },
+        "16:02": {
+            "tripId": "8095261304188281355",
+            "direction": "Os.Piast\u00f3w"
+        },
+        "16:22": {
+            "tripId": "8095261304194486799",
+            "direction": "Os.Piast\u00f3w"
+        },
+        "16:42": {
+            "tripId": "8095261304194490893",
+            "direction": "Os.Piast\u00f3w"
+        },
+        "17:02": {
+            "tripId": "8095261304194494991",
+            "direction": "Os.Piast\u00f3w"
+        }
+    }
+}

@@ -1,0 +1,8 @@
+.idea
+__pycache__
+token.pickle
+migrations/
+credentials.json
+
+
+
