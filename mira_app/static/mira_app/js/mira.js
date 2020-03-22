@@ -17,8 +17,9 @@ function getWeather() {
         let current_temp = r['currently']['temperature'].toString();
         let current_icon = r['currently']['icon'];
 
-        $('#weather-value').text(current_temp.split('.')[0]);
-        $('#weather-icon').removeClass().addClass('wi').addClass('weather-icon').addClass(weatherTranslates[current_icon]);
+        $('#weather-value').text(current_temp.split('.')[0] === '-0' ? "0" : current_temp.split('.')[0]);
+        // $('#weather-icon').removeClass().addClass('wi').addClass('weather-icon').addClass(weatherTranslates[current_icon]);
+        $('#weather-icon img').attr('src', `../static/mira_app/gif/${r.currently.icon}.gif`);
 
         getWeatherForecast(r.hourly.temperature, r.hourly.precipitation);
     })
@@ -154,16 +155,96 @@ function updatePublicTransport(data) {
 
     $.each(data, function (k, v) {
         let nearest = getNearest(v);
-        nearestTimes[k] = nearest
-    });
 
-    console.log('nearest times', nearestTimes);
+        if (nearest.length !== 0) {
+            nearestTimes[k] = nearest
+        }
+    });
 
     let nearestLines = orderLines(nearestTimes);
 
-    console.log('nearest lines', nearestLines);
+    displayPublicTransport(nearestLines)
+}
 
 
+function displayPublicTransport(transportData) {
+    let transportContainer = $('#public-transport-container');
+    transportContainer.html('');
+
+    $.each(transportData, function (k, v) {
+        let table = createTable(v);
+        transportContainer.append(table);
+    });
+
+    if (transportContainer.html() === '') {
+        transportContainer.text('No data to display.')
+    }
+}
+
+
+function createTable(data) {
+    let table = $('<table>').addClass('public-transport');
+
+    table.append($('<tr>').append($('<td>').addClass('transport-type').attr('rowspan', 3).text(linesDestinations[data.line].type)).append($('<td>').addClass('line-number').addClass('bold').text(data.line[data.line.length - 1] === 'r' ? data.line.substring(0, 3) : data.line)).append($('<td>').addClass('transport-destination').text(linesDestinations[data.line].final)));
+    table.append($('<tr>').append($('<td>').addClass('transport-hour').attr('colspan', 2).append($('<canvas>').addClass('transport-line').attr('width', 300).attr('height', 50))));
+    table.append($('<tr>').append($('<td>').addClass('transport-next').attr('colspan', 2).text(toMinutes(data.times).join(' , '))));
+
+    let ctx = table.find('canvas')[0];
+
+    drawLine(ctx, data);
+
+    return table
+}
+
+
+function drawLine(canvas, data) {
+    let ctx = canvas.getContext('2d');
+    let radius = 4;
+    let place1 = 60;
+    let place2 = 240;
+    let y = 25;
+    let textY = 15;
+    let destY = 45;
+    let textOffset = 14;
+    let letterWidth = 6;
+
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(300, y);
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(place1, y, radius, 0, 2 * Math.PI);
+    ctx.arc(place2, y, radius, 0, 2 * Math.PI);
+    ctx.fillStyle = 'white';
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.font = '10pt MyriadLight';
+    ctx.fillText(data.nearest, place1 - textOffset, textY);
+    ctx.fillText(addTime(data.nearest, linesDestinations[data.line].estTime), place2 - textOffset, textY);
+    ctx.fillText(linesDestinations[data.line].home, place1 - linesDestinations[data.line].home.length * letterWidth / 2, destY);
+    ctx.fillText(linesDestinations[data.line].dest, place2 - linesDestinations[data.line].dest.length * letterWidth / 2, destY);
+}
+
+
+function addTime(time, duration) {
+    let h = parseInt(time.split(':')[0]);
+    let m = parseInt(time.split(':')[1]);
+
+    if (m + duration > 59) {
+        m = "0" + (m + duration - 60);
+        h++;
+    } else {
+        m += duration;
+        m = "0" + m;
+    }
+
+    return `${h}:${m.slice(-2)}`
 }
 
 
@@ -186,12 +267,12 @@ function getNearest(lineData) {
 }
 
 
-function orderLines(nearestLines) {
+function orderLines(nearestTines) {
     let result = {};
     let nearest = {};
     let sortable = [];
 
-    $.each(nearestLines, function(k, v) {
+    $.each(nearestTines, function(k, v) {
         nearest[k] = v[0]
     });
 
@@ -206,7 +287,8 @@ function orderLines(nearestLines) {
     $.each(sortable, function (k, v) {
         result[k] = {
             line: v[0],
-            time: v[1]
+            nearest: v[1],
+            times: nearestTines[v[0]]
         }
     });
 
@@ -214,11 +296,26 @@ function orderLines(nearestLines) {
 }
 
 
-function toMinutes(hour) {
+function toMinutes(hoursList) {
+    let minutesList = [];
     let currDate = new Date;
-    let departDate = new Date(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), v.split(':')[0], v.split(':')[1]);
 
-    return Math.floor((currDate - departDate) / 1000 / 60)
+    $.each(hoursList, function(k, v) {
+        let departDate = new Date(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), v.split(':')[0], v.split(':')[1]);
+        let minutes = Math.floor((departDate - currDate) / 1000 / 60);
+
+        if (minutes < 60 && 1 <= minutes) {
+            minutes = minutes + 'm';
+        } else if (minutes < 1) {
+            minutes = '<1m';
+        }else {
+            minutes = Math.floor(minutes/60) + 'h ' + minutes%60 + 'm';
+        }
+
+        minutesList.push(minutes)
+    });
+
+    return minutesList
 }
 
 

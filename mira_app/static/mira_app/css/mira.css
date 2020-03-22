@@ -41,6 +41,10 @@ body {
     font-family: MyriadBold, serif;
 }
 
+.text-xs {
+    font-size: 19px;
+}
+
 .text-small-half {
     font-size: 23px;
 }
@@ -110,6 +114,12 @@ body {
     height: 1px;
     border: none;
     background-color: lightblue;
+}
+
+#weather-icon img {
+    width: 100px;
+    height: 100px;
+    padding-left: 10px;
 }
 
 .event {
@@ -208,4 +218,48 @@ body {
 
 .cart-quantity {
     font-size: 15px;
+}
+
+table.public-transport {
+    width: 100%;
+    font-size: 20px;
+    /*letter-spacing: 1px;*/
+}
+
+table.public-transport, table.public-transport * {
+    /*background-color: red;*/
+    /*border: 1px solid white;*/
+}
+
+table.public-transport .line-number {
+    background-color: #da7822;
+    width: 50px;
+    height: 25px;
+    text-align: center;
+    vertical-align: center;
+    border-radius: 7px;
+}
+
+table.public-transport .transport-type {
+    width: 35px;
+}
+
+table.public-transport .transport-next {
+    text-align: right;
+}
+
+table.public-transport .transport-destination {
+    padding-left: 10px;
+}
+
+#public-transport-container > * {
+    margin-bottom: 15px;
+}
+
+#public-transport-container > *:not(:last-child) {
+    border-bottom: 1px solid #282828;
+}
+
+#public-transport-container > *:not(:first-child) {
+    margin-top: 15px;
 }

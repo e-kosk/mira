@@ -8,6 +8,7 @@
     <script src="{% static 'mira_app/js/jQuery.js' %}"></script>
     <script src="{% static 'mira_app/js/weatherTranslates.js' %}"></script>
     <script src="{% static 'mira_app/js/mira.js' %}"></script>
+    <script src="{% static 'mira_app/js/publicTransportLines.js' %}"></script>
     <script src="{% static 'mira_app/js/caleandar.js' %}"></script>
     <script src="{% static 'mira_app/js/Chart.min.js' %}"></script>
     <script src="{% static 'mira_app/js/Chart.bundle.min.js' %}"></script>
@@ -42,7 +43,7 @@
 
 <div id="weather-container">
     <div id="weather-main">
-        <span id="weather-icon"></span><span><span id="weather-value" class="text-medium"></span><span class="text-tiny bold grey"></span><span class="text-medium">&deg</span></span>
+        <span id="weather-icon"><img alt="icon not found"></span><span><span id="weather-value" class="text-medium"></span><span class="text-tiny bold grey"></span><span class="text-medium">&deg</span></span>
     </div>
     <div id="weather-forecast">
         <canvas id="myChart" width="325" height="150"></canvas>
@@ -69,7 +70,7 @@
 </div>
 
 <div id="cart-container">
-    <ol id="cart" class="text-small-half upper light"></ol>
+    <ol id="cart" class="text-xs upper light"></ol>
 </div>
 
 <div class="vertical-spacer"></div>
@@ -80,20 +81,6 @@
 </div>
 
 <div id="public-transport-container">
-    <div id="b182" class="public-transport">
-        <table border="2">
-            <tr>
-                <td class="line-number"></td>
-                <td class="line-destination"></td>
-            </tr>
-            <tr>
-                <td colspan="2" class="hours"></td>
-            </tr>
-            <tr>
-                <td colspan="2" class="next"></td>
-            </tr>
-        </table>
-    </div>
 </div>
 
 </body>
