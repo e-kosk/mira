@@ -122,30 +122,103 @@ function getCart() {
 }
 
 
-function getPublicTransport() {
-    let lines = ['139', '139r', '182', '159', '52'];
-    lines = ['139', '182'];
+async function getTransportData(line) {
+    let result = null;
 
-    let res = {};
-
-    $.each(lines, function (k, v) {
-        getTD(v).then(x => res[v] = x);
-    });
-
-    return res
-}
-
-
-async function getTD(line) {
-    return $.ajax({
+    await $.ajax({
         url: `public_transport/${line}/`,
-        type: 'GET',
+        method: 'get',
+    }).done(function (r) {
+        result = r;
     });
+
+    return result
 }
 
 
-function updatePublicTransport() {
+async function getPublicTransport() {
+    let result = {};
 
+    await getTransportData('182').then(r => result['182'] = r);
+    await getTransportData('52').then(r => result['52'] = r);
+    await getTransportData('139').then(r => result['139'] = r);
+    await getTransportData('139r').then(r => result['139r'] = r);
+    await getTransportData('159').then(r => result['159'] = r);
+
+    return result;
+}
+
+
+function updatePublicTransport(data) {
+    let nearestTimes = {};
+
+    $.each(data, function (k, v) {
+        let nearest = getNearest(v);
+        nearestTimes[k] = nearest
+    });
+
+    console.log('nearest times', nearestTimes);
+
+    let nearestLines = orderLines(nearestTimes);
+
+    console.log('nearest lines', nearestLines);
+
+
+}
+
+
+function getNearest(lineData) {
+    let nearest = [];
+    let currDate = new Date;
+
+    $.each(lineData, function(k, v) {
+        let departDate = new Date(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), v.split(':')[0], v.split(':')[1]);
+
+        if (currDate < departDate) {
+            nearest.push(v);
+            if (nearest.length >= 3) {
+                return false;
+            }
+        }
+    });
+
+    return nearest
+}
+
+
+function orderLines(nearestLines) {
+    let result = {};
+    let nearest = {};
+    let sortable = [];
+
+    $.each(nearestLines, function(k, v) {
+        nearest[k] = v[0]
+    });
+
+    $.each(nearest, function (k, v) {
+        sortable.push([k, v]);
+    });
+
+    sortable.sort(function(a, b) {
+        return parseInt(a[1].replace(':', '')) - parseInt(b[1].replace(':', ''))
+    });
+
+    $.each(sortable, function (k, v) {
+        result[k] = {
+            line: v[0],
+            time: v[1]
+        }
+    });
+
+    return result
+}
+
+
+function toMinutes(hour) {
+    let currDate = new Date;
+    let departDate = new Date(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), v.split(':')[0], v.split(':')[1]);
+
+    return Math.floor((currDate - departDate) / 1000 / 60)
 }
 
 
@@ -172,28 +245,14 @@ function getWeatherForecast(temp, precip) {
             datasets: [{
                 label: 'temp',
                 data: temperatures,
-                // backgroundColor: 'rgba(255, 99, 132, 1)',
                 yAxisID: 'temp',
                 borderWidth: 2,
-                // borderColor: 'rgba(255, 99, 132, 1)',
                 borderColor: 'rgb(255,255,255)',
-                // borderColor: function(context) {
-                //     var index = context.dataIndex;
-                //     var value = context.dataset.data[index];
-                //     console.log(index);
-                //     console.log(value);
-                //     console.log(value > 7 ? 'green' : 'red');
-                //     return value > 7 ? 'green' : 'red';
-                // },
-                // fill: false,
                 pointRadius: 0,
-                // stepSize: 5,
             }, {
                 label: 'rain',
                 data: precipitation,
                 yAxisID: 'precip',
-                // backgroundColor: 'rgb(133,127,133)',
-                // borderColor: 'rgb(128,212,255)',
                 borderColor: 'rgb(133,127,133)',
                 fill: true,
                 borderWidth: 2,
@@ -227,9 +286,9 @@ function getWeatherForecast(temp, precip) {
             legend: {
                 display: false
             },
-            labels: {
-                stepSize: 10,
-            }
+            // labels: {
+            //     stepSize: 10,
+            // }
         }
     });
 }
@@ -245,45 +304,37 @@ function getDelay() {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    let publicTransportData = getPublicTransport();
+    let publicTransportData;
 
+    getPublicTransport().then(r => {publicTransportData = r; updatePublicTransport(r)});
     updateTime();
     getWeather();
     getCalendar();
     getCart();
 
     setTimeout(function () {
-        console.log('p', publicTransportData);
-    }, 3000);
-
-    setTimeout(function () {
         setInterval(function () {
-            publicTransportData = getPublicTransport();
+            publicTransportData = getPublicTransport(publicTransportData);
         }, 86400000)
     }, getDelay());
 
     setInterval(function () {
-        updatePublicTransport();
+        updatePublicTransport(publicTransportData);
     }, 60000);
 
     setInterval(function () {
         updateTime();
     }, 60000);
 
-    // setInterval(function () {
-    //     getWeather();
-    // }, 3600000);
+    setInterval(function () {
+        getWeather();
+    }, 3600000);
 
-    // setInterval(function () {
-    //     getCalendar();
-    // }, 3600000);
+    setInterval(function () {
+        getCalendar();
+    }, 3600000);
 
     setInterval(function () {
         getCart();
     }, 60000);
-
-    // setInterval(function () {
-    //     getPublicTransport();
-    // }, 60000);
-
 });
