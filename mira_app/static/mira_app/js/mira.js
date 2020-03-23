@@ -65,14 +65,16 @@ function getCalendar() {
             EventTargetWholeDay: false,
             DisabledDays: [5, 6],
         };
+
         const element = document.getElementById('calendar-m');
+        $(element).html('');
         caleandar(element, e, settings);
+
     });
 }
 
-
 function showEvent(title, description, date) {
-    let eventsList = $('#events ul');
+    let eventsList = $('#events ul').html('');
 
     let li = $('<li>');
     let eventEl = $('<div class="event">');
