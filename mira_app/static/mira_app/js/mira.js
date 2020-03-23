@@ -42,18 +42,20 @@ function getWeather() {
 
 function getCalendar() {
     let e = [];
+    let eventsList = $('#events ul');
 
     $.ajax({
         url: 'calendar/',
         method: 'get',
     }).done(function (r) {
+        eventsList.html('');
         $.each(r.events, function (k, v) {
             let d = new Date(v.start);
             e.push({'Date': new Date(d.getFullYear(), d.getMonth(), d.getDate()), 'Title': v.title},);
             showEvent(v.title, v.description, new Date(d.getFullYear(), d.getMonth(), d.getDate()))
         });
         const settings = {
-            Color: '',
+            Color: '#ffffff',
             LinkColor: '',
             NavShow: false,
             NavVertical: false,
@@ -74,7 +76,7 @@ function getCalendar() {
 }
 
 function showEvent(title, description, date) {
-    let eventsList = $('#events ul').html('');
+    let eventsList = $('#events ul');
 
     let li = $('<li>');
     let eventEl = $('<div class="event">');
