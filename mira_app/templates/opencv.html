@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>OpenCV Tests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+
+
+
+    <script async src="{% static 'mira_app/js/opencvmain.js' %}"></script>
+    <script src="{% static 'mira_app/js/opencv.js' %}"></script>
+</head>
+
+
+
+{#<body class="bx--body p20">#}
+{#  <!-- <img id="img" src="hand.jpg"/>  -->#}
+{#  <div class="p20">#}
+{#    Handtrack.js allows you prototype handtracking interactions in the browser in 10 lines of code.#}
+{#  </div>#}
+{#  <div class="mb10">#}
+{#    <button id="trackbutton" class="bx--btn bx--btn--secondary" type="button">#}
+{#      Toggle Video#}
+{#    </button>#}
+{#    <div id="updatenote" class="updatenote mt10"> loading model ..</div>#}
+{#  </div>#}
+{#  <video class="videobox canvasbox" autoplay="autoplay" id="myvideo"></video>#}
+{##}
+{#  <canvas id="canvas" class="border canvasbox"></canvas>#}
+{##}
+{#  <script src="https://unpkg.com/carbon-components@latest/scripts/carbon-components.js"></script>#}
+{#  <script src="https://cdn.jsdelivr.net/npm/handtrackjs/dist/handtrack.min.js"> </script>#}
+{#  <script src="track.js"></script>#}
+{#</body>#}
+
+
+
+<body>
+    <img src="{% static 'mira_app/js/hand.jpg' %}" alt="hand image">
+
+    <div>
+        <video id="videoInput"></video>
+        <canvas id="canvasOutput"></canvas>
+        <canvas id="canvasCopy"></canvas>
+        <canvas id="templateCanvas"></canvas>
+        <canvas id="templateShowCanvas"></canvas>
+        <canvas id="templateMatchingResult"></canvas>
+    </div>
+
+</body>
+</html>

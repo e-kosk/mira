@@ -1,0 +1,157 @@
+@font-face {
+  font-family: 'MyriadLight';
+  src: local('MyriadLight'),
+       url('../fonts/MyriadPro-Light.otf') format("truetype");
+}
+
+@font-face {
+  font-family: 'MyriadNormal';
+  src: local('MyriadNormal'),
+       url('../fonts/MYRIADPRO-COND.OTF') format("truetype");
+}
+
+@font-face {
+  font-family: 'MyriadBold';
+  src: local('MyriadBold'),
+       url('../fonts/MYRIADPRO-BOLDCOND.OTF') format("truetype");
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+    padding: 0;
+    color: white;
+    background-color: black;
+    font-family: MyriadLight, serif;
+
+    /*max-width: 600px;*/
+}
+
+div#products{
+    float: left;
+    width: 100%;
+    padding: 20px;
+    /*background-color: black;*/
+    border-right: 1px solid white;
+}
+
+.product {
+    width: 100%;
+    height: 2em;
+    font-size: 50px;
+    line-height: 2em;
+}
+
+input#new-product {
+    width: auto;
+    /*height: 100%;*/
+    font-size: inherit;
+    border: none;
+    background-color: initial;
+    /*-webkit-appearance: none;*/
+    /*border-radius: 0;*/
+    color: inherit;
+    padding: 0;
+    margin: 0 0 0 -20px;
+}
+
+input#new-product:focus {
+    -webkit-appearance: none;
+    border-radius: 0;
+    /*background-color: red;*/
+}
+
+::placeholder {
+    color: #a8a8a8;
+}
+
+label[for=new-product]::before {
+    color: #a8a8a8;
+}
+
+
+
+
+
+.container {
+    /*max-width: 640px;*/
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 70px;
+}
+
+ul.ks-cboxtags {
+    list-style: none;
+    padding: 30px;
+}
+ul.ks-cboxtags li{
+    display: block;
+}
+ul.ks-cboxtags li label{
+    display: inline-block;
+    background-color: rgba(255, 255, 255, .9);
+    /*background-color: green;*/
+    border: 2px solid rgba(139, 139, 139, .3);
+    /*color: #adadad;*/
+    color: #565656;
+    border-radius: 70px;
+    white-space: nowrap;
+    margin: 3px 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li label {
+    padding: 8px 30px 8px 12px;
+    cursor: pointer;
+}
+
+ul.ks-cboxtags li label::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free", serif;
+    font-weight: 900;
+    font-size: 50px;
+    padding: 2px 20px 20px 10px;
+    content: "\f067";
+    transition: transform .3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label::before {
+    content: "\f00c";
+    transform: rotate(-360deg);
+    transition: transform .3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label {
+    border: 2px solid #1bdbf8;
+    background-color: #12bbd4;
+    color: #fff;
+    transition: all .2s;
+}
+
+/*ul.ks-cboxtags li input[type="checkbox"] {*/
+/*  display: absolute;*/
+/*}*/
+ul.ks-cboxtags li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+/*ul.ks-cboxtags li input[type="checkbox"]:focus + label {*/
+/*  border: 2px solid #e9a1ff;*/
+/*}*/

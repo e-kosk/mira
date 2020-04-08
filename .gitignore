@@ -1,8 +1,19 @@
-.idea
-__pycache__
-token.pickle
-migrations/
-credentials.json
+### virtual environment ###
 env
+
+### pycache ###
+__pycache__
+
+### IDE ###
+.idea
+
+### authorisation ###
+token.pickle
+credentials.json
+
+### database ###
+migrations
+*.sqlite3
+
 
 

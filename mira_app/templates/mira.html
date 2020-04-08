@@ -8,10 +8,12 @@
     <script src="{% static 'mira_app/js/jQuery.js' %}"></script>
     <script src="{% static 'mira_app/js/weatherTranslates.js' %}"></script>
     <script src="{% static 'mira_app/js/mira.js' %}"></script>
+    <script src="{% static 'mira_app/js/gestures.js' %}"></script>
     <script src="{% static 'mira_app/js/publicTransportLines.js' %}"></script>
     <script src="{% static 'mira_app/js/caleandar.js' %}"></script>
     <script src="{% static 'mira_app/js/Chart.min.js' %}"></script>
     <script src="{% static 'mira_app/js/Chart.bundle.min.js' %}"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <link rel="stylesheet" href="{% static 'mira_app/css/mira.css' %}">
     <link rel="stylesheet" href="{% static 'mira_app/css/weather-icons.css' %}">
     <link rel="stylesheet" href="{% static 'mira_app/css/theme1.css' %}">
@@ -33,6 +35,14 @@
         </div>
     </div>
 </div>
+
+<div id="space"></div>
+
+
+<div id="qr">
+    {{ http_address }}
+</div>
+
 
 <div class="vertical-spacer"></div>
 
@@ -70,7 +80,7 @@
 </div>
 
 <div id="cart-container">
-    <ol id="cart" class="text-xs upper light"></ol>
+    <ol id="cart" class="text-xs"></ol>
 </div>
 
 <div class="vertical-spacer"></div>

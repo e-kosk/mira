@@ -111,18 +111,22 @@ function getCart() {
     }).done(function (r) {
         cart.html('');
 
-        $.each(r.needed, function (k, v) {
-            let li = $('<li>');
-            let span_name = $('<span>');
-            let span_quantity = $('<span class="cart-quantity bold grey right">');
+        if (Object.keys(r.needed).length > 0) {
+            $.each(r.needed, function (k, v) {
+                let li = $('<li>');
+                let span_name = $('<span>');
+                let span_quantity = $('<span class="cart-quantity bold grey right">');
 
-            span_name.text(k);
-            span_quantity.text(v);
+                span_name.text(k);
+                span_quantity.text(v);
 
-            li.append(span_name);
-            li.append(span_quantity);
-            cart.append(li);
-        });
+                li.append(span_name);
+                // li.append(span_quantity);
+                cart.append(li);
+            });
+        } else {
+            $('#cart-container').text('No data to display.');
+        }
     });
 }
 
@@ -404,6 +408,30 @@ function getDelay() {
 }
 
 
+function showQR() {
+    let div = $('#qr');
+    let url = div.text();
+    div.text('');
+
+    let size = 100;
+    new QRCode("qr", {
+        text: url,
+        width: size,
+        height: size,
+        colorDark : "#323232",
+        // colorDark : "#000000",
+        // colorLight : "#ffffff",
+        colorLight : "#000000",
+        correctLevel : QRCode.CorrectLevel.M
+    });
+}
+
+
+function mark_no_data(el) {
+    $(el).html()
+}
+
+
 document.addEventListener('DOMContentLoaded', function () {
     let publicTransportData;
 
@@ -412,6 +440,7 @@ document.addEventListener('DOMContentLoaded', function () {
     getWeather();
     getCalendar();
     getCart();
+    showQR();
 
     setTimeout(function () {
         setInterval(function () {

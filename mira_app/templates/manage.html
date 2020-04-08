@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Mira</title>
+    <script src="{% static 'mira_app/js/jQuery.js' %}"></script>
+    <script src="{% static 'mira_app/js/manage.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'mira_app/css/manage.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+    {% block extrastyle %}{% endblock %}
+</head>
+<body>
+
+
+<div class="container">
+    <ul class="ks-cboxtags">
+        {% for product in products %}
+            <li>
+                {% if product.1 %}
+                    <input type="checkbox" id="{{ product.0 }}" value="{{ product.0 }}" checked>
+                {% else %}
+                    <input type="checkbox" id="{{ product.0 }}" value="{{ product.0 }}">
+                {% endif %}
+
+                <label for="{{ product.0 }}">{{ product.0 }}</label>
+            </li>
+        {% endfor %}
+        <li>
+            <label for="new-product">
+                <input type="text" id="new-product" placeholder="dodaj...">
+            </label>
+
+        </li>
+    </ul>
+
+</div>
+
+
+</body>
+</html>
